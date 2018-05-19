@@ -1,0 +1,8 @@
+{
+  "name": "Start on Node: Node.js",
+  "description": "A barebones Node.js app using Express 4",
+  "repository": "https://github.com/vishaljhanjhri/node_demo.git",
+  "logo": "https://github.com/vishaljhanjhri/node_demo.git/master/public/node.svg",
+  "keywords": ["node", "express", "vishal"],
+  "image": "node_demo/nodejs"
+}
