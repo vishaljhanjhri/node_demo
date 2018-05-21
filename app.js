@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 app.use(require('method-override')());
 app.use(express.static(__dirname + '/public'));
 
-app.use(session({ secret: 'mongo_dev', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false  }));
+app.use(session({ secret: 'mongo_dev', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: true  }));
 
 if (!isProduction) {
     app.use(errorhandler());
@@ -81,6 +81,6 @@ app.use(function(err, req, res, next) {
 });
 
 // finally, let's start our server...
-var server = app.listen(8080, function(){
+var server = app.listen(config.port, function(){
     console.log('Listening on port ' + server.address().port);
 })
