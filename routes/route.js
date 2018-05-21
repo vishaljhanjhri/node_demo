@@ -23,6 +23,7 @@ router.get('/getAllUsers', function(req, res, next) { getAllUser(req, res, next)
 
 
 function getAllUser(req, res, next) {
+    console.log("req::getAllUser", req)
     let token = globalFunction(req);
     // User.findOne({access_token: token}).then(function(user){
 
@@ -40,6 +41,7 @@ function getAllUser(req, res, next) {
             res.status(200).json({'users': userarray})
 
         }).catch(next)
+
 }
 
 
