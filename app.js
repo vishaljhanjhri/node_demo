@@ -38,6 +38,10 @@ if (isProduction) {
 }
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
+db.on('open', function() {
+    console.log("db is up and running;;;;;")
+})
+
 
 
 require('./model/User');
