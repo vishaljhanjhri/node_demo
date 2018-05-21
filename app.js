@@ -38,7 +38,7 @@ if (isProduction) {
 }
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.on('open', function() {
+db.on('open', function(callback) {
     console.log("db is up and running;;;;;")
 })
 
