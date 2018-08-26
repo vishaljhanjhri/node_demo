@@ -5,6 +5,7 @@ let User = mongoose.model('User');
 let auth = require('../../config/auth');
 let globalFunction = require('../../config/constantFunc');
 let mailer = require('../../Services/emailService');
+let Promise = require('bluebird')
 
 
 
@@ -106,6 +107,7 @@ exports.login = function (req, res, next) {
     if (!req.body.password) {
         res.status(400).json({'message': 'password is required'})
     }
+
     passport.authenticate('local', {sesssion: false}, function (error, user, info) {
         if (error) {
             next(error)

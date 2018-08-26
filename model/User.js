@@ -1,4 +1,4 @@
-let mongoose = require('mongoose');
+var mongoose = require('mongoose');
 let uniqueValidator = require('mongoose-unique-validator');
 let crypto = require('crypto');
 let jwt = require('jsonwebtoken');
