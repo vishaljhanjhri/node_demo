@@ -24,7 +24,6 @@ router.get('/getAllUsers', function(req, res, next) { getAllUser(req, res, next)
 
 
 function getAllUser(req, res, next) {
-    return new Promise((resolve, reject) => {
     console.log("req:: ********************", )
     let token = globalFunction(req);
     
@@ -39,20 +38,28 @@ function getAllUser(req, res, next) {
     //     }
         
     // }).catch(next)
-    console.log("_____", Date.now())
+    console.log("1", Date.now())
        let userarray = [];
+       User.find({}, function(err, list) {
+           if (err) throw next
+          console.log("2", Date.now())
+           for (let i = 0; i < list.length; ++i) {
+            let object = User(list[i]).toProfileJSONFor();
+            userarray.push(object)
+         }
+         res.status(200).json({'users': userarray})
+       })
     //    promise.coroutine(function* () {
-          console.log("_____", Date.now())
-           User.find().then(function (list) {
-            console.log("_____", Date.now())
-            for (let i = 0; i < list.length; ++i) {
-                let object = User(list[i]).toProfileJSONFor();
-                userarray.push(object)
-            }
-            res.status(200).json({'users': userarray})
-        }).catch(next)
+        //   console.log("_____", Date.now())
+        //    User.find().then(function (list) {
+        //     console.log("_____", Date.now())
+        //     for (let i = 0; i < list.length; ++i) {
+        //         let object = User(list[i]).toProfileJSONFor();
+        //         userarray.push(object)
+        //     }
+        //     res.status(200).json({'users': userarray})
+        // }).catch(next)
 // });
-    });
 }
 
 
