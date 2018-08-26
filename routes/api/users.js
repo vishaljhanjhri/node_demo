@@ -5,7 +5,7 @@ let User = mongoose.model('User');
 let auth = require('../../config/auth');
 let globalFunction = require('../../config/constantFunc');
 let mailer = require('../../Services/emailService');
-let Promise = require('bluebird')
+//let Promise = require('bluebird')
 
 
 

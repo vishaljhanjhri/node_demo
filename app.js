@@ -32,7 +32,7 @@ if (!isProduction) {
 }
 
 // if (isProduction) {
-//     mongoose.connect('mongodb://dev529:vishal12@ds137110.mlab.com:37110/mongo_dev')
+//     mongoose.connect('mongodb://dev529:********@ds137110.mlab.com:37110/mongo_dev')
 // } else {
     mongoose.connect('mongodb://dev_user:123456@ds137110.mlab.com:37110/mongo_dev')
 // }
