@@ -23,8 +23,13 @@ router.get('/getAllUsers', function(req, res, next) { getAllUser(req, res, next)
 
 
 function getAllUser(req, res, next) {
-    console.log("req::getAllUser", req)
+    console.log("req:: ********************", )
     let token = globalFunction(req);
+    
+    if (token == null) {
+        res.status(200).json({'Message': 'Tokenn is required'})
+    }
+     
     // User.findOne({access_token: token}).then(function(user){
 
     //     if (!user || user.access_token  ==  null || !(token === user.access_token)) {
