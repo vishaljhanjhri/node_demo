@@ -39,7 +39,8 @@ function getAllUser(req, res, next) {
     // }).catch(next)
     console.log("_____", Date.now())
        let userarray = [];
-       yield User.find().then(function (list) {
+       let newPromise = new Promise( 
+           User.find().then(function (list) {
             console.log("_____", Date.now())
             for (let i = 0; i < list.length; ++i) {
                 let object = User(list[i]).toProfileJSONFor();
@@ -47,6 +48,7 @@ function getAllUser(req, res, next) {
             }
             res.status(200).json({'users': userarray})
         }).catch(next)
+    );
 
 }
 
