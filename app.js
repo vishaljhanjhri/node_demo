@@ -31,11 +31,11 @@ if (!isProduction) {
     app.use(errorhandler());
 }
 
-if (isProduction) {
-    mongoose.connect('mongodb://dev529:vishal12@ds137110.mlab.com:37110/mongo_dev')
-} else {
+// if (isProduction) {
+//     mongoose.connect('mongodb://dev529:vishal12@ds137110.mlab.com:37110/mongo_dev')
+// } else {
     mongoose.connect('mongodb://dev_user:123456@ds137110.mlab.com:37110/mongo_dev')
-}
+// }
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.on('open', function(callback) {
@@ -85,6 +85,6 @@ app.use(function(err, req, res, next) {
 });
 
 // finally, let's start our server...
-var server = app.listen(config.port, function(){
+var server = app.listen(3001, 'localhost', function(){
     console.log('Listening on port ' + server.address().port);
 })
