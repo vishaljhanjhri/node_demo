@@ -37,8 +37,10 @@ function getAllUser(req, res, next) {
     //     }
         
     // }).catch(next)
+    console.log("_____", Date.now())
        let userarray = [];
         User.find().then(function (list) {
+            console.log("_____", Date.now())
             for (let i = 0; i < list.length; ++i) {
                 let object = User(list[i]).toProfileJSONFor();
                 userarray.push(object)
