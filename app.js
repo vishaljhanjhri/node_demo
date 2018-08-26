@@ -85,6 +85,6 @@ app.use(function(err, req, res, next) {
 });
 
 // finally, let's start our server...
-var server = app.listen(config.port, function(){
+var server = app.listen(8080, 'localhost',  function(){
     console.log('Listening on port ' + server.address().port);
 })

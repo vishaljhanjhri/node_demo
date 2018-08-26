@@ -28,28 +28,35 @@ exports.updateUser = function (req, res, next) {
     let payload = req.body;
 
     if (payload.username) {
-        res.status(400).json({'message': 'username is not allowed.'});
+        res.status(200).json({
+            'statusCode': 400,
+            'message': 'username is not allowed.'});
         return
     }
     if (payload.email) {
-        res.status(400).json({'message': 'Email is not allowed.'});
+        res.status(200).json({
+            'statusCode': 400,
+            'message': 'Email is not allowed.'});
         return
 
     }
     if (payload.password) {
-        res.status(400).json({'message': 'Password is not allowed.'});
+        res.status(200).json({
+            'statusCode': 400,
+            'message': 'Password is not allowed.'});
         return
     }
-
     User.findOne({access_token: token}).then(function(user) {
         if (!user || user.access_token  ==  null || !(token === user.access_token)) {
             res.status(401).json({message: "session expire"})
+            return
         }
         user.updateUser(payload).then(function () {
             res.status(200).json({message: "User updated successfully."})
         }).catch(next)
     }).catch(next)
 }
+
 exports.changePassword = function (req, res, next) {
     let token = globalFunction(req);
     let payload = req.body;

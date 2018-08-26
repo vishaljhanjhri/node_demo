@@ -1,11 +1,13 @@
 var nodemailer = require('nodemailer');
 var handlebars = require('handlebars');
 var fs = require('fs');
+var promise = require('bluebird')
+var emailResponse = require('../model/EmailResponses')
 
 
 var mailConfig = {
-    senderMail: '*********',
-    senderPass: '******',
+    senderMail: 'vishaljain529@gmail.com',
+    senderPass: '*******',
     service: 'gmail',
     subject: 'Thankyou for signup'
 }
@@ -37,11 +39,36 @@ module.exports = function(user) {
 }
 
 function sendMailWith(options, user) {
-    transporter.sendMail(options, function(error, info){
+    transporter.sendMail(options, function(error, info) {
+    
         if (error) {
             console.log(error);
         } else {
-            console.log('Email sent: ' + info.response + " to " + mail.email);
+            // console.log('Email sent: ', info.accepted);
+            
+            // promise.coroutine(function* () {
+                for (let i = 0; i < info.accepted.length; i++) {
+                    console.log('Email rejected: ', info.rejected);
+                    var obj = new emailResponse()
+                    obj.email = info.accepted[i];
+                    obj.subject = options.subject;
+                    obj.status = true;
+                    obj.userId = user.id;
+
+                    obj.save()
+                }
+                for (let i = 0; i < info.rejected.length; i++) {
+                    var obj = new emailResponse()
+                    obj.email = info.rejected[i];
+                    obj.subject = options.subject;
+                    obj.status = false;
+                    obj.userId = user.id;
+
+                    obj.save()
+                }
+            // });
+
+
         }
     });
 }
