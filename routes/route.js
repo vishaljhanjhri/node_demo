@@ -40,7 +40,7 @@ function getAllUser(req, res, next) {
     // }).catch(next)
     console.log("_____", Date.now())
        let userarray = [];
-       promise..coroutine(function* () {
+       promise.coroutine(function* () {
        let newPromise = new Promise( 
            User.find().then(function (list) {
             console.log("_____", Date.now())
