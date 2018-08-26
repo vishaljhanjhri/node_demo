@@ -5,7 +5,7 @@ let User = mongoose.model('User');
 let auth = require('../config/auth');
 let globalFunction = require('../config/constantFunc');
 let mailer = require('../Services/emailService');
-let promise = require('bluebird')
+let promise = require('bluebird');
 
 let users = require('./api/users');
 
@@ -24,6 +24,7 @@ router.get('/getAllUsers', function(req, res, next) { getAllUser(req, res, next)
 
 
 function getAllUser(req, res, next) {
+    return new Promise((resolve, reject) => {
     console.log("req:: ********************", )
     let token = globalFunction(req);
     
@@ -40,7 +41,8 @@ function getAllUser(req, res, next) {
     // }).catch(next)
     console.log("_____", Date.now())
        let userarray = [];
-       promise.coroutine(function* () {
+    //    promise.coroutine(function* () {
+          console.log("_____", Date.now())
            User.find().then(function (list) {
             console.log("_____", Date.now())
             for (let i = 0; i < list.length; ++i) {
@@ -49,7 +51,8 @@ function getAllUser(req, res, next) {
             }
             res.status(200).json({'users': userarray})
         }).catch(next)
-});
+// });
+    });
 }
 
 
