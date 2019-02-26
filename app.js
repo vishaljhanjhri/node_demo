@@ -34,7 +34,8 @@ if (!isProduction) {
 // if (isProduction) {
 //     mongoose.connect('mongodb://dev529:********@ds137110.mlab.com:37110/mongo_dev')
 // } else {
-    mongoose.connect('mongodb://dev_user:123456@ds137110.mlab.com:37110/mongo_dev')
+    mongoose.connect('mongodb://dev_user:123456@ds137110.mlab.com:37110/mongo_dev', { useNewUrlParser: true })
+    mongoose.set('useCreateIndex', true);
 // }
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -85,6 +86,6 @@ app.use(function(err, req, res, next) {
 });
 
 // finally, let's start our server...
-var server = app.listen(8080, 'localhost',  function(){
+var server = app.listen(config.port,  function(){
     console.log('Listening on port ' + server.address().port);
 })
